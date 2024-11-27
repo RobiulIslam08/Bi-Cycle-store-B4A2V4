@@ -29,14 +29,28 @@ const getAllSearchProductFromDB = async (searchTerm: string) => {
 };
 
 //get single data
-const getSingleData = async (productId:string) => {
-	const result = await ProductModel.findById(productId)
-	return result
-}
+const getSingleProduct = async (productId: string) => {
+  const result = await ProductModel.findById(productId);
+  return result;
+};
+
+//update product data
+const updateProductData = async (
+  productId: string,
+  updateData: Partial<TProduct>,
+) => {
+  const result = await ProductModel.findByIdAndUpdate(
+    productId,
+    { $set: updateData },
+    { new: true, runValidators: true },
+  );
+  return result
+};
 
 export const ProductService = {
   createProductIntoDB,
   getAllProductFromDB,
   getAllSearchProductFromDB,
-  getSingleData
+  getSingleProduct,
+  updateProductData,
 };

@@ -68,7 +68,7 @@ const getProducts = async (req: Request, res: Response) => {
 const getSingleData = async (req: Request, res: Response) => {
   try {
     const productId = req.params.productId;
-    const result = await ProductService.getSingleData(productId as string);
+    const result = await ProductService.getSingleProduct(productId as string);
 
 	//যদি product খুজে না পাওয়া যায় তাহলে product not found show করবে
 	if (!result) {
@@ -85,8 +85,36 @@ const getSingleData = async (req: Request, res: Response) => {
 	  }
   } catch (error) {}
 };
+
+//updata product data
+const updateProductData = async (req:Request, res:Response) => {
+	try {
+		const productId = req.params.productId;
+	const updateData = req.body
+	const result = await ProductService.updateProductData(productId,updateData)
+	if(!result){
+		res.status(500).json({
+			message:"Product Not Found",
+			status: false,
+		})
+	}
+	res.status(200).json({
+		message:"Bicycle updated successfully",
+		status:true,
+		data:result
+	})
+	} catch (error:any) {
+		res.status(500).json({
+			message: 'Failed to update product',
+			status: false,
+			error: error.message,
+			stack: error.stack,
+		  });
+	}
+}
 export const ProductController = {
   createProduct,
   getProducts,
   getSingleData,
+  updateProductData,
 };
