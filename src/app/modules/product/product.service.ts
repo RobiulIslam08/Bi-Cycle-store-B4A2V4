@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import { TProduct } from './product.interface';
 import { ProductModel } from './product.model';
 
@@ -47,10 +48,20 @@ const updateProductData = async (
   return result
 };
 
+//delete product data
+const deleteProduct = async (productId: string) => {
+  if (!mongoose.Types.ObjectId.isValid(productId)) {
+    throw new Error('Invalid product ID'); // Throw an error if the ID is invalid
+  }
+  const result = await ProductModel.findOneAndDelete({ _id: productId });
+  return result;
+};
+
 export const ProductService = {
   createProductIntoDB,
   getAllProductFromDB,
   getAllSearchProductFromDB,
   getSingleProduct,
   updateProductData,
+  deleteProduct
 };

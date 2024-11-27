@@ -83,7 +83,14 @@ const getSingleData = async (req: Request, res: Response) => {
 		  data: result,
 		});
 	  }
-  } catch (error) {}
+  } catch (error:any) {
+	res.status(500).json({
+		message: 'Something Went Wrong !',
+		status: false,
+		error: error,
+		stack: error.stack,
+	  });
+  }
 };
 
 //updata product data
@@ -112,9 +119,32 @@ const updateProductData = async (req:Request, res:Response) => {
 		  });
 	}
 }
+
+//delete product
+const deleteProduct = async (req:Request, res:Response):Promise<void>  => {
+	try {
+		const { productId } = req.params;
+		const result = await ProductService.deleteProduct(productId);
+	
+		
+	
+		res.status(200).json({
+		  message: "Product deleted successfully",
+		  success: true,
+		  data: result,
+		});
+	  } catch (err: any) {
+		res.status(500).json({
+		  message: "Something went wrong",
+		  success: false,
+		  error: err.message,
+		});
+	  }
+}
 export const ProductController = {
   createProduct,
   getProducts,
   getSingleData,
   updateProductData,
+  deleteProduct
 };
