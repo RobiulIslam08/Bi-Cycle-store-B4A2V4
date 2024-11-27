@@ -6,6 +6,27 @@ const createProductIntoDB = async(productData:TProduct) =>{
 
 	return result
 }
+const getAllProductFromDB = async () => {
+	const result = await ProductModel.find();
+	
+	return result;
+  };
+  const getAllSearchProductFromDB = async (searchTerm: string) => {
+	const searchFields = ['name', 'brand', 'type'];
+  
+	const searchConditions = searchFields.map((field) => ({
+	  [field]: { $regex: searchTerm, $options: 'i' },
+	}));
+  
+	const result = await ProductModel.find({
+	  $or: searchConditions,
+	});
+  
+	return result;
+  };
+  
 export const ProductService = {
-	createProductIntoDB
+	createProductIntoDB,
+	getAllProductFromDB,
+	getAllSearchProductFromDB
 }
