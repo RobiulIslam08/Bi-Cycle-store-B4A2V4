@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from 'express';
 import { ProductService } from './product.service';
 
@@ -22,47 +23,85 @@ const createProduct = async (req: Request, res: Response) => {
   }
 };
 // get all product and get data by searchTerm
+// const getProducts = async (req: Request, res: Response) => {
+//   try {
+//     const { searchTerm } = req.query;
+//     let result;
+//     if (searchTerm) {
+//       result = await ProductService.getAllSearchProductFromDB(
+//         searchTerm as string,
+//       );
+//     } else {
+//       result = await ProductService.getAllProductFromDB();
+//     }
+//     res.status(200).json({
+//       message: 'Bicycles retrieved successfully',
+//       success: true,
+//       data: result,
+//     });
+
+
+// 	//when product empty , show this message
+// 	if (result.length === 0) {
+// 		res.status(404).json({
+// 		  message: 'No products found',
+// 		  status: true,
+// 		  data: [],
+// 		});
+// 	  } else {
+// 		res.status(200).json({
+// 		  message: 'Bicycles retrieved successfully',
+// 		  status: true,
+// 		  data: result,
+// 		});
+// 	  }
+//   } catch (error: any) {
+//     res.status(500).json({
+//       message: 'Something Went Wrong !',
+//       status: false,
+//       error: error.errors,
+//       stack: error.stack,
+//     });
+//   }
+// };
 const getProducts = async (req: Request, res: Response) => {
-  try {
-    const { searchTerm } = req.query;
-    let result;
-    if (searchTerm) {
-      result = await ProductService.getAllSearchProductFromDB(
-        searchTerm as string,
-      );
-    } else {
-      result = await ProductService.getAllProductFromDB();
-    }
-    res.status(200).json({
-      message: 'Products retrieved successfully',
-      success: true,
-      data: result,
-    });
-
-
-	//when product empty , show this message
-	if (result.length === 0) {
-		res.status(404).json({
+	try {
+	  const { searchTerm } = req.query;
+	  let result;
+  
+	  if (searchTerm) {
+		result = await ProductService.getAllSearchProductFromDB(
+		  searchTerm as string,
+		);
+	  } else {
+		result = await ProductService.getAllProductFromDB();
+	  }
+  
+	  // Check if result is empty before sending a response
+	  if (result.length === 0) {
+		return res.status(404).json({
 		  message: 'No products found',
-		  status: true,
+		  success: false,
 		  data: [],
 		});
-	  } else {
-		res.status(200).json({
-		  message: 'Bicycles retrieved successfully',
-		  status: true,
-		  data: result,
-		});
 	  }
-  } catch (error: any) {
-    res.status(500).json({
-      message: 'Something Went Wrong !',
-      status: false,
-      error: error.errors,
-      stack: error.stack,
-    });
-  }
-};
+  
+	  // Send response if products are found
+	  res.status(200).json({
+		message: 'Bicycles retrieved successfully',
+		success: true,
+		data: result,
+	  });
+	} catch (error: any) {
+	  res.status(500).json({
+		message: 'Something went wrong!',
+		success: false,
+		error: error.errors,
+		stack: error.stack,
+	  });
+	}
+  };
+  
 
 //get single data by id
 const getSingleData = async (req: Request, res: Response) => {

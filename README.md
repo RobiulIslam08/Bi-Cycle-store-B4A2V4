@@ -6,11 +6,8 @@ The **BI-CYCLE MANAGEMENT SYSTEM** is a backend application developed using **Ex
 
 ### Live Link:
 
-- [BI-CYCLE MANAGEMENT SYSTEM](https://bi-cycle-store-b4-a2-v4.vercel.app/)
+- [BI-CYCLE MANAGEMENT SYSTEM](https://bi-cycle-store-b4-a2-v4-bay.vercel.app/)
 
-### Video Demo:
-
-- [Video Demonstration](https://drive.google.com/file/d/1wfNcEeD1VUL1_tlfrlwc3HGuo3lbLWFM/view)
 
 ---
 
@@ -39,7 +36,7 @@ This is a backend-only project, so you need to use **Postman** or a similar API 
 
 - **Full URL Format**:  
 ```bash
-https://bi-cycle-store-b4-a2-v4.vercel.app/api/products
+https://bi-cycle-store-b4-a2-v4-bay.vercel.app/api/products
 ```
 
 - **Description**:  
@@ -56,14 +53,14 @@ https://bi-cycle-store-b4-a2-v4.vercel.app/api/products
 
 - **Full URL Format**:  
 ```bash
-https://bi-cycle-store-b4-a2-v4.vercel.app/api/products
+https://bi-cycle-store-b4-a2-v4-bay.vercel.app/api/products
 ```
 
 - **Search Functionality**:  
   To search for products by specific fields such as name, brand, or type, append a `searchTerm` query parameter.  
   Example:  
   ```bash
-  https://bi-cycle-store-b4-a2-v4.vercel.app/api/products?searchTerm=Hybrid
+https://bi-cycle-store-b4-a2-v4-bay.vercel.app/api/products?searchTerm=Hybrid
   ```
   **Note**: The search uses regex, enabling partial matching for flexible queries.
 
@@ -78,7 +75,7 @@ https://bi-cycle-store-b4-a2-v4.vercel.app/api/products
 
 - **Full URL Format**:  
 ```bash
-https://bi-cycle-store-b4-a2-v4.vercel.app/api/products/6740bf78d95e6dd49804f02e
+https://bi-cycle-store-b4-a2-v4-bay.vercel.app/api/products/6740bf78d95e6dd49804f02e
 ```
 
 ---
@@ -92,7 +89,7 @@ https://bi-cycle-store-b4-a2-v4.vercel.app/api/products/6740bf78d95e6dd49804f02e
 
 - **Full URL Format**:  
 ```bash
-https://bi-cycle-store-b4-a2-v4.vercel.app/api/products/6740bf78d95e6dd49804f02e
+https://bi-cycle-store-b4-a2-v4-bay.vercel.app/api/products/6740bf78d95e6dd49804f02e
 ```
 
 - **Body Example**:  
@@ -116,7 +113,7 @@ https://bi-cycle-store-b4-a2-v4.vercel.app/api/products/6740bf78d95e6dd49804f02e
 
 - **Full URL Format**:  
 ```bash
-https://bi-cycle-store-b4-a2-v4.vercel.app/api/products/6740c2eb2e09631f60bf7b53
+https://bi-cycle-store-b4-a2-v4-bay.vercel.app/api/products/6740c2eb2e09631f60bf7b53
 ```
 
 ---
@@ -149,7 +146,7 @@ https://bi-cycle-store-b4-a2-v4.vercel.app/api/products/6740c2eb2e09631f60bf7b53
 
 - **Full URL Format**:  
 ```bash
-https://bi-cycle-store-b4-a2-v4.vercel.app/api/orders/revenue
+https://bi-cycle-store-b4-a2-v4-bay.vercel.app/api/orders/revenue
 ```
 
 - **Note**: Uses MongoDB aggregation to compute revenue by summing the `totalPrice` field from all order records.
@@ -179,7 +176,7 @@ https://bi-cycle-store-b4-a2-v4.vercel.app/api/orders/revenue
 
 1. Clone the repository:  
    ```bash
-   git clone https://github.com/Sazid60/Bi-Cycle-store-B4A2V4.git
+   git clone https://github.com/RobiulIslam08/Bi-Cycle-store-B4A2V4.git
    ```
 
 2. Navigate to the project directory and install dependencies:  
@@ -190,7 +187,7 @@ https://bi-cycle-store-b4-a2-v4.vercel.app/api/orders/revenue
 3. Create a `.env` file in the root directory and add the following environment variables:  
    ```env
    NODE_ENV=development
-   PORT=5000
+   PORT=3000
    DATABASE_URL=<your_mongodb_connection_url>
    ```
 
